@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RTL Visualizer</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>RTL Visualizer</h1>
+
+</header>
+
+<div class="container">
+
+    <aside class="left-panel">
+
+        <h2>Verilog RTL</h2>
+
+        <textarea id="verilogInput">
+
+module xor_gate(
+
+input A,
+input B,
+
+output Y
+
+);
+
+wire nA;
+wire nB;
+wire w1;
+wire w2;
+
+assign nA = ~A;
+assign nB = ~B;
+
+assign w1 = A & nB;
+assign w2 = nA & B;
+
+assign Y = w1 | w2;
+
+endmodule
+
+        </textarea>
+
+        <div class="buttons">
+
+            <button id="generateBtn">
+                회로 생성
+            </button>
+
+            <button id="clearBtn">
+                초기화
+            </button>
+
+        </div>
+
+        <div class="analysis">
+
+            <h2>Analysis</h2>
+
+            <table>
+
+                <tr>
+                    <td>Module</td>
+                    <td id="moduleName">-</td>
+                </tr>
+
+                <tr>
+                    <td>Inputs</td>
+                    <td id="inputCount">0</td>
+                </tr>
+
+                <tr>
+                    <td>Outputs</td>
+                    <td id="outputCount">0</td>
+                </tr>
+
+                <tr>
+                    <td>Wires</td>
+                    <td id="wireCount">0</td>
+                </tr>
+
+                <tr>
+                    <td>Gates</td>
+                    <td id="gateCount">0</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </aside>
+
+    <main class="right-panel">
+
+        <div class="toolbar">
+
+            <button id="zoomIn">＋</button>
+
+            <button id="zoomOut">－</button>
+
+            <button id="resetView">Reset</button>
+
+        </div>
+
+        <svg id="diagram">
+
+            <text
+                x="50%"
+                y="50%"
+                text-anchor="middle"
+                font-size="28">
+
+                회로 생성 버튼을 누르세요
+
+            </text>
+
+        </svg>
+
+    </main>
+
+</div>
+
+<script src="js/parser.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/renderer.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
